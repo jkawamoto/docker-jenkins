@@ -14,5 +14,5 @@ USER root
 RUN apt-get update && apt-get install -y python-pip
 RUN pip install --upgrade docker-py
 
-VOLUME /var/jenkins_home/workspace
+VOLUME /var/jenkins_home
 ADD bin /usr/local/bin

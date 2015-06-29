@@ -34,14 +34,13 @@ def run(image, cmd, myname):
         image=image, command=cmd,
         host_config=docker.utils.create_host_config(volumes_from=myname))
 
-    id = container.get("Id")
-    cli.start(container=id, volumes_from=myname)
-    for out in cli.logs(container=id, stdout=True, stderr=True, stream=True):
+    cli.start(container, volumes_from=myname)
+    for out in cli.logs(container, stdout=True, stderr=True, stream=True):
         sys.stdout.write(out)
         sys.stdout.write("\n")
 
-    cli.wait(container=id)
-    cli.remove_container(container=id)
+    cli.wait(container)
+    cli.remove_container(container)
 
 
 def main():
